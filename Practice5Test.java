@@ -1,3 +1,4 @@
+//import BSTree.BSTNode;
 
 public class Practice5Test {
 	
@@ -11,10 +12,16 @@ public class Practice5Test {
 
 	public boolean insertRemoveTest() {
 		tree.insert("First");    // Insert a value into the tree
-		if (tree.find("First")) {    // If that works, insert another value into the tree
+		if (tree.find("First")) {
+			// If that works, insert another value into the tree
+			//System.out.println("find first: " + tree.find("First"));
 			tree.insert("Second");
+			//System.out.println("find second: " + tree.find("Second"));
+			//System.out.println("find works");
+			//System.out.println(tree.find("First") && tree.find("Second"));
 			if (tree.find("First") && tree.find("Second")) { // Both should be present now.
-				tree.delete("First");  // Delete one of the values and try to retrieve it...
+				tree.delete("First"); // Delete one of the values and try to retrieve it...
+				//System.out.println("--delete first--");
 				if (tree.find("First") || ! tree.find("Second"))
 					return false;
 				tree.delete("Second"); // The tree should be empty now
@@ -47,18 +54,22 @@ public class Practice5Test {
 		// Checks whether the tree keeps data in the correct order
 		String [] values = {"Turing", "Knuth", "Dijstra", "Hopper", "Lee", "Codd", "Lovelace", "Thompson", "Matsumoto", "Allen", "Wilson"};
 		for (String value : values) {
+			//System.out.println(value);
 			tree.insert(value);
 		}
+		
 		// Here, we expect alphabetic order, specifically: 
 		// Allen Codd Dijstra Hopper Knuth Lee Lovelace Matsumoto Thompson Turing Wilson
 		if (tree.toStringInOrder().equals("Allen Codd Dijstra Hopper Knuth Lee Lovelace Matsumoto Thompson Turing Wilson"))
 			return true;
 		return false;
-	}
+					}
 	
 	
 	public boolean treePreOrderTest() {
 		// Checks whether the tree keeps data in the correct order
+		//tree.PreOrder(null);
+		//tree.toStringPreOrder();
 		if (tree.toStringPreOrder().equals("Turing Knuth Dijstra Codd Allen Hopper Lee Lovelace Thompson Matsumoto Wilson"))
 				return true;
 		System.out.println("Order:     " + tree.toStringPreOrder() + "|");
@@ -95,6 +106,7 @@ public class Practice5Test {
 		}
 		
 		// Test 3: check that the (in-order) ordering of the tree is correct
+		
 		try {
 			if (treeInOrderTest()) {
 				grade += 25;
@@ -103,7 +115,7 @@ public class Practice5Test {
 				throw new Exception("Fails.");
 			}
 		} catch (Exception e) {
-			System.out.println("[   ] = the tree does not appears to store data correct pre-order order.");
+			System.out.println("[   ] = the tree does not appears to store data correct in-order order.");
 		}
 		
 		// Test 4: check that the (pre-ordering) ordering of the tree is correct
